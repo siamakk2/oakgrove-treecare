@@ -7,242 +7,212 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--green:#1C3A2B;--gold:#C8A96E;--sage:#7A9E7E;--cream:#F7F3EC;--charcoal:#2C2C2C;--red:#C0392B;--amber:#E67E22;--blue:#2980B9}
-body{font-family:'Inter',sans-serif;background:#0f1a13;color:#e8f0eb;min-height:100vh}
+:root{--green:#1C3A2B;--gold:#C8A96E;--sage:#7A9E7E;--cream:#F7F3EC;--charcoal:#2C2C2C;--red:#C0392B;--amber:#E67E22}
+body{font-family:'Inter',sans-serif;background:#0a1209;color:#e8f0eb;min-height:100vh}
+
+/* LOGIN */
+#login-screen{position:fixed;inset:0;background:#0a1209;z-index:999;display:flex;align-items:center;justify-content:center;padding:1.5rem}
+.login-box{background:rgba(28,58,43,0.7);border:1px solid rgba(200,169,110,0.3);border-radius:16px;padding:2.5rem;width:100%;max-width:400px;text-align:center}
+.login-logo{margin-bottom:1.2rem}
+.login-logo svg{width:56px;height:56px}
+.login-title{font-family:'Playfair Display',serif;font-size:1.6rem;color:#fff;margin-bottom:0.3rem}
+.login-sub{font-size:0.8rem;color:rgba(255,255,255,0.4);margin-bottom:1.8rem}
+.user-select{display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1.2rem}
+.user-btn{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:0.9rem 1rem;color:#fff;font-family:'Inter',sans-serif;font-size:0.9rem;cursor:pointer;transition:background 0.2s,border-color 0.2s;text-align:left;display:flex;align-items:center;gap:0.75rem;width:100%}
+.user-btn:hover{background:rgba(200,169,110,0.12);border-color:rgba(200,169,110,0.3)}
+.ub-avatar{width:38px;height:38px;border-radius:50%;background:rgba(200,169,110,0.2);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--gold);flex-shrink:0;font-size:1rem}
+.ub-name{font-weight:600;font-size:0.92rem}
+.ub-role{font-size:0.72rem;color:rgba(255,255,255,0.38);margin-top:0.1rem}
+.ub-arrow{margin-left:auto;color:var(--gold);font-size:1rem}
+.login-divider{font-size:0.72rem;color:rgba(255,255,255,0.2);margin:0.5rem 0}
+.login-orchamind-btn{width:100%;background:var(--gold);color:var(--green);border:none;border-radius:8px;padding:0.85rem;font-family:'Inter',sans-serif;font-size:0.95rem;font-weight:700;cursor:pointer;transition:opacity 0.2s;margin-top:0.25rem}
+.login-orchamind-btn:hover{opacity:0.88}
+.login-footer{margin-top:1.2rem;font-size:0.72rem;color:rgba(255,255,255,0.22)}
+.login-footer a{color:var(--gold);text-decoration:none}
+
+/* DASHBOARD */
 header{background:rgba(28,58,43,0.95);backdrop-filter:blur(10px);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(200,169,110,0.3);position:sticky;top:0;z-index:100}
 .logo{display:flex;align-items:center;gap:0.75rem}
-.logo svg{width:36px;height:36px}
-.logo-text{font-family:'Playfair Display',serif;font-size:1.1rem;color:#fff}
+.logo-text{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff}
 .logo-text span{color:var(--gold)}
-.logo-sub{font-size:0.65rem;color:rgba(255,255,255,0.45);letter-spacing:0.15em;text-transform:uppercase}
-.header-right{display:flex;align-items:center;gap:1rem}
-.date-badge{font-size:0.8rem;color:rgba(255,255,255,0.5)}
-.back-btn{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.7);padding:0.45rem 1rem;border-radius:6px;font-size:0.82rem;cursor:pointer;text-decoration:none;font-family:'Inter',sans-serif}
-.back-btn:hover{background:rgba(255,255,255,0.14);color:#fff}
-.main{padding:2rem;max-width:1200px;margin:0 auto}
-.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem}
-.kpi{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:1.4rem;position:relative;overflow:hidden}
+.logo-sub{font-size:0.6rem;color:rgba(255,255,255,0.4);letter-spacing:0.15em;text-transform:uppercase}
+.header-right{display:flex;align-items:center;gap:0.75rem}
+.date-badge{font-size:0.78rem;color:rgba(255,255,255,0.45)}
+.back-btn{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.65);padding:0.4rem 0.9rem;border-radius:6px;font-size:0.8rem;cursor:pointer;text-decoration:none;font-family:'Inter',sans-serif}
+.logout-btn{background:rgba(192,57,43,0.15);border:1px solid rgba(192,57,43,0.3);color:#e74c3c;padding:0.4rem 0.9rem;border-radius:6px;font-size:0.8rem;cursor:pointer;font-family:'Inter',sans-serif}
+.main{padding:1.5rem 2rem;max-width:1200px;margin:0 auto}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem}
+.kpi{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:1.3rem;position:relative;overflow:hidden}
 .kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold)}
-.kpi-label{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.45);margin-bottom:0.5rem}
-.kpi-value{font-family:'Playfair Display',serif;font-size:2.2rem;color:#fff;line-height:1}
-.kpi-sub{font-size:0.75rem;color:rgba(255,255,255,0.35);margin-top:0.3rem}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem}
-.panel{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden}
-.panel-head{padding:1rem 1.4rem;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between}
-.panel-title{font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.1em}
-.panel-body{padding:1.4rem}
-.job-list{list-style:none;display:flex;flex-direction:column;gap:0.85rem}
-.job-item{background:rgba(255,255,255,0.04);border-radius:8px;padding:1rem 1.2rem;border-left:3px solid var(--sage);display:flex;justify-content:space-between;align-items:center;gap:1rem}
-.job-item.urgent{border-left-color:var(--red)}
-.job-item.pending{border-left-color:var(--amber)}
-.job-name{font-weight:600;font-size:0.9rem;color:#fff;margin-bottom:0.2rem}
-.job-detail{font-size:0.78rem;color:rgba(255,255,255,0.45)}
-.job-badge{font-size:0.68rem;font-weight:700;padding:0.25rem 0.65rem;border-radius:50px;white-space:nowrap}
-.badge-active{background:rgba(122,158,126,0.2);color:var(--sage)}
-.badge-urgent{background:rgba(192,57,43,0.2);color:#e74c3c}
-.badge-pending{background:rgba(230,126,34,0.2);color:var(--amber)}
-.badge-done{background:rgba(41,128,185,0.2);color:#3498db}
+.kpi-label{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.4);margin-bottom:0.4rem}
+.kpi-value{font-family:'Playfair Display',serif;font-size:2rem;color:#fff;line-height:1}
+.kpi-sub{font-size:0.72rem;color:rgba(255,255,255,0.3);margin-top:0.25rem}
 .ai-box{background:rgba(28,58,43,0.4);border:1px solid rgba(200,169,110,0.2);border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
 .ai-head{background:rgba(28,58,43,0.6);padding:1rem 1.4rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(200,169,110,0.15)}
 .ai-head-left{display:flex;align-items:center;gap:0.6rem}
 .ai-icon{width:28px;height:28px;background:var(--gold);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:0.85rem}
 .ai-title{font-size:0.85rem;font-weight:600;color:#fff}
-.ai-subtitle{font-size:0.72rem;color:rgba(255,255,255,0.4);margin-top:0.1rem}
-.refresh-btn{background:var(--gold);color:var(--green);border:none;padding:0.5rem 1.1rem;border-radius:6px;font-size:0.8rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity 0.2s}
-.refresh-btn:hover{opacity:0.85}
+.ai-sub{font-size:0.7rem;color:rgba(255,255,255,0.35);margin-top:0.1rem}
+.refresh-btn{background:var(--gold);color:var(--green);border:none;padding:0.45rem 1rem;border-radius:6px;font-size:0.78rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif}
 .refresh-btn:disabled{opacity:0.5;cursor:not-allowed}
-.ai-body{padding:1.4rem;font-size:0.9rem;line-height:1.75;color:rgba(255,255,255,0.82);min-height:80px}
-.ai-body.loading{color:rgba(255,255,255,0.35);font-style:italic}
-.chat-section{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
-.chat-messages{padding:1.2rem;min-height:200px;max-height:340px;overflow-y:auto;display:flex;flex-direction:column;gap:0.85rem}
-.msg{display:flex;gap:0.65rem;align-items:flex-start}
-.msg-avatar{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;flex-shrink:0}
-.msg-avatar.rudy{background:var(--gold);color:var(--green)}
-.msg-avatar.ai{background:rgba(122,158,126,0.3);color:var(--sage)}
-.msg-bubble{background:rgba(255,255,255,0.06);border-radius:0 10px 10px 10px;padding:0.75rem 1rem;font-size:0.88rem;line-height:1.6;color:rgba(255,255,255,0.85);max-width:85%}
-.msg.user .msg-bubble{background:rgba(200,169,110,0.15);border-radius:10px 0 10px 10px;margin-left:auto}
-.msg.user{flex-direction:row-reverse}
-.chat-input-row{padding:1rem 1.2rem;border-top:1px solid rgba(255,255,255,0.07);display:flex;gap:0.75rem}
-.chat-input{flex:1;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:0.7rem 1rem;color:#fff;font-family:'Inter',sans-serif;font-size:0.88rem;outline:none}
-.chat-input:focus{border-color:var(--gold)}
-.chat-send{background:var(--gold);color:var(--green);border:none;border-radius:8px;padding:0.7rem 1.2rem;font-weight:700;cursor:pointer;font-size:0.88rem}
-.crew-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:0.85rem}
-.crew-card{background:rgba(255,255,255,0.04);border-radius:10px;padding:1rem;text-align:center;border:1px solid rgba(255,255,255,0.07)}
-.crew-avatar{width:44px;height:44px;background:rgba(28,58,43,0.6);border:2px solid var(--sage);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 0.6rem;font-weight:700;font-size:1rem;color:var(--sage)}
-.crew-name{font-size:0.82rem;font-weight:600;color:#fff;margin-bottom:0.2rem}
-.crew-role{font-size:0.7rem;color:rgba(255,255,255,0.4)}
-.crew-status{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--sage);margin-top:0.4rem}
-.add-btn{background:rgba(200,169,110,0.1);border:1px dashed rgba(200,169,110,0.3);color:var(--gold);border-radius:8px;padding:0.6rem 1.2rem;font-size:0.82rem;cursor:pointer;font-family:'Inter',sans-serif;transition:background 0.2s}
-.add-btn:hover{background:rgba(200,169,110,0.18)}
-.tab-row{display:flex;gap:0.5rem;padding:1rem 1.4rem 0;border-bottom:1px solid rgba(255,255,255,0.07)}
-.tab{background:none;border:none;color:rgba(255,255,255,0.4);font-family:'Inter',sans-serif;font-size:0.8rem;font-weight:600;padding:0.5rem 1rem;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;text-transform:uppercase;letter-spacing:0.08em;transition:color 0.2s}
+.ai-body{padding:1.3rem;font-size:0.9rem;line-height:1.75;color:rgba(255,255,255,0.8);min-height:70px}
+.ai-body.loading{color:rgba(255,255,255,0.3);font-style:italic}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem}
+.panel{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
+.panel-head{padding:0.9rem 1.3rem;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between}
+.panel-title{font-size:0.75rem;font-weight:700;color:rgba(255,255,255,0.55);text-transform:uppercase;letter-spacing:0.1em}
+.tab-row{display:flex;gap:0.4rem;padding:0.9rem 1.3rem 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+.tab{background:none;border:none;color:rgba(255,255,255,0.35);font-family:'Inter',sans-serif;font-size:0.78rem;font-weight:600;padding:0.45rem 0.9rem;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;text-transform:uppercase;letter-spacing:0.08em}
 .tab.active{color:var(--gold);border-bottom-color:var(--gold)}
-.tab-content{display:none;padding:1.4rem}
+.tab-content{display:none;padding:1.3rem}
 .tab-content.active{display:block}
+.job-list{list-style:none;display:flex;flex-direction:column;gap:0.75rem}
+.job-item{background:rgba(255,255,255,0.04);border-radius:8px;padding:0.9rem 1.1rem;border-left:3px solid var(--sage);display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.job-item.urgent{border-left-color:var(--red)}
+.job-item.pending{border-left-color:var(--amber)}
+.job-name{font-weight:600;font-size:0.88rem;color:#fff;margin-bottom:0.18rem}
+.job-detail{font-size:0.75rem;color:rgba(255,255,255,0.4)}
+.job-badge{font-size:0.66rem;font-weight:700;padding:0.22rem 0.6rem;border-radius:50px;white-space:nowrap}
+.badge-active{background:rgba(122,158,126,0.2);color:var(--sage)}
+.badge-urgent{background:rgba(192,57,43,0.2);color:#e74c3c}
+.badge-pending{background:rgba(230,126,34,0.2);color:var(--amber)}
+.badge-done{background:rgba(41,128,185,0.2);color:#3498db}
+.add-btn{background:rgba(200,169,110,0.1);border:1px dashed rgba(200,169,110,0.3);color:var(--gold);border-radius:8px;padding:0.5rem 1rem;font-size:0.8rem;cursor:pointer;font-family:'Inter',sans-serif}
+.crew-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:0.75rem}
+.crew-card{background:rgba(255,255,255,0.04);border-radius:10px;padding:1rem;text-align:center;border:1px solid rgba(255,255,255,0.06)}
+.crew-avatar{width:40px;height:40px;background:rgba(28,58,43,0.6);border:2px solid var(--sage);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 0.5rem;font-weight:700;font-size:0.95rem;color:var(--sage)}
+.crew-name{font-size:0.8rem;font-weight:600;color:#fff;margin-bottom:0.15rem}
+.crew-role{font-size:0.68rem;color:rgba(255,255,255,0.35)}
+.chat-section{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;overflow:hidden}
+.chat-messages{padding:1.1rem;min-height:180px;max-height:300px;overflow-y:auto;display:flex;flex-direction:column;gap:0.75rem}
+.msg{display:flex;gap:0.6rem;align-items:flex-start}
+.msg-avatar{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;flex-shrink:0}
+.msg-avatar.ai{background:rgba(122,158,126,0.3);color:var(--sage)}
+.msg-avatar.user{background:rgba(200,169,110,0.25);color:var(--gold)}
+.msg-bubble{background:rgba(255,255,255,0.06);border-radius:0 10px 10px 10px;padding:0.7rem 0.9rem;font-size:0.86rem;line-height:1.6;color:rgba(255,255,255,0.83);max-width:84%}
+.msg.user .msg-bubble{background:rgba(200,169,110,0.13);border-radius:10px 0 10px 10px;margin-left:auto}
+.msg.user{flex-direction:row-reverse}
+.chat-input-row{padding:0.9rem 1.1rem;border-top:1px solid rgba(255,255,255,0.06);display:flex;gap:0.6rem}
+.chat-input{flex:1;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:0.65rem 0.9rem;color:#fff;font-family:'Inter',sans-serif;font-size:0.86rem;outline:none}
+.chat-input:focus{border-color:var(--gold)}
+.chat-send{background:var(--gold);color:var(--green);border:none;border-radius:8px;padding:0.65rem 1.1rem;font-weight:700;cursor:pointer;font-size:0.88rem}
+.orchamind-link{display:flex;align-items:center;gap:0.75rem;background:rgba(200,169,110,0.08);border:1px solid rgba(200,169,110,0.2);border-radius:10px;padding:1rem 1.2rem;text-decoration:none;transition:background 0.2s;margin-bottom:1rem}
+.orchamind-link:hover{background:rgba(200,169,110,0.15)}
+.orchamind-link-icon{font-size:1.4rem}
+.orchamind-link-text{flex:1}
+.orchamind-link-title{font-weight:700;color:var(--gold);font-size:0.92rem}
+.orchamind-link-sub{font-size:0.75rem;color:rgba(255,255,255,0.4);margin-top:0.1rem}
 @media(max-width:900px){.kpi-grid{grid-template-columns:repeat(2,1fr)}.grid-2{grid-template-columns:1fr}}
-@media(max-width:600px){.kpi-grid{grid-template-columns:repeat(2,1fr)}.main{padding:1rem}}
-
-#login-screen{position:fixed;inset:0;background:#0a1209;z-index:999;display:flex;align-items:center;justify-content:center;padding:1.5rem}
-.login-box{background:rgba(28,58,43,0.7);border:1px solid rgba(200,169,110,0.3);border-radius:16px;padding:2.5rem;width:100%;max-width:380px;text-align:center}
-.login-logo{margin-bottom:1.5rem}
-.login-logo svg{width:56px;height:56px}
-.login-title{font-family:'Playfair Display',serif;font-size:1.6rem;color:#fff;margin-bottom:0.4rem}
-.login-sub{font-size:0.82rem;color:rgba(255,255,255,0.4);margin-bottom:2rem}
-.login-field{width:100%;background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.12);border-radius:8px;padding:0.85rem 1rem;color:#fff;font-family:'Inter',sans-serif;font-size:1rem;outline:none;margin-bottom:0.85rem;text-align:center;letter-spacing:0.1em}
-.login-field:focus{border-color:var(--gold)}
-.login-btn{width:100%;background:var(--gold);color:var(--green);border:none;border-radius:8px;padding:0.9rem;font-family:'Inter',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;transition:opacity 0.2s}
-.login-btn:hover{opacity:0.88}
-.login-error{color:#e74c3c;font-size:0.82rem;margin-top:0.6rem;min-height:1.2em}
-.user-select{display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1.2rem}
-.user-btn{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:0.85rem;color:#fff;font-family:'Inter',sans-serif;font-size:0.92rem;cursor:pointer;transition:background 0.2s;text-align:left;display:flex;align-items:center;gap:0.75rem}
-.user-btn:hover{background:rgba(255,255,255,0.12)}
-.user-btn .ub-avatar{width:36px;height:36px;border-radius:50%;background:rgba(200,169,110,0.2);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--gold);flex-shrink:0}
-.user-btn .ub-name{font-weight:600}
-.user-btn .ub-role{font-size:0.72rem;color:rgba(255,255,255,0.4)}
-.login-back{background:none;border:none;color:rgba(255,255,255,0.35);font-size:0.8rem;cursor:pointer;margin-top:0.75rem;font-family:'Inter',sans-serif}
-.login-back:hover{color:rgba(255,255,255,0.6)}
+@media(max-width:600px){.main{padding:1rem}.kpi-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
 
+<!-- LOGIN SCREEN -->
 <div id="login-screen">
   <div class="login-box">
     <div class="login-logo">
       <svg viewBox="0 0 64 64"><rect width="64" height="64" rx="8" fill="#1C3A2B"/><polygon points="32,6 12,36 52,36" fill="#7A9E7E"/><polygon points="32,16 8,50 56,50" fill="#2E5940"/><rect x="27" y="48" width="10" height="12" rx="2" fill="#8B6340"/><circle cx="32" cy="32" r="30" fill="none" stroke="#C8A96E" stroke-width="2"/></svg>
     </div>
     <div class="login-title">Oak Grove</div>
-    <div class="login-sub">Site Manager · Crew Login</div>
-
-    <!-- Step 1: Pick user -->
-    <div id="step-pick">
-      <div class="user-select">
-        <button class="user-btn" onclick="pickUser('Rudy','Owner / Operator','R')">
-          <div class="ub-avatar">R</div><div><div class="ub-name">Rudy De Rosas</div><div class="ub-role">Owner / Operator</div></div>
-        </button>
-        <button class="user-btn" onclick="pickUser('Miguel','Lead Climber','M')">
-          <div class="ub-avatar">M</div><div><div class="ub-name">Miguel</div><div class="ub-role">Lead Climber</div></div>
-        </button>
-        <button class="user-btn" onclick="pickUser('Jose','Ground Crew','J')">
-          <div class="ub-avatar">J</div><div><div class="ub-name">Jose</div><div class="ub-role">Ground Crew</div></div>
-        </button>
-        <button class="user-btn" onclick="pickUser('Carlos','Equipment Operator','C')">
-          <div class="ub-avatar">C</div><div><div class="ub-name">Carlos</div><div class="ub-role">Equipment Operator</div></div>
-        </button>
-      </div>
+    <div class="login-sub">Site Manager · Powered by Orchamind</div>
+    <div class="user-select">
+      <button class="user-btn" onclick="goOrchaMind()"><div class="ub-avatar">R</div><div><div class="ub-name">Rudy De Rosas</div><div class="ub-role">Owner / Operator</div></div><span class="ub-arrow">→</span></button>
+      <button class="user-btn" onclick="goOrchaMind()"><div class="ub-avatar">M</div><div><div class="ub-name">Miguel</div><div class="ub-role">Lead Climber</div></div><span class="ub-arrow">→</span></button>
+      <button class="user-btn" onclick="goOrchaMind()"><div class="ub-avatar">J</div><div><div class="ub-name">Jose</div><div class="ub-role">Ground Crew</div></div><span class="ub-arrow">→</span></button>
+      <button class="user-btn" onclick="goOrchaMind()"><div class="ub-avatar">C</div><div><div class="ub-name">Carlos</div><div class="ub-role">Equipment Operator</div></div><span class="ub-arrow">→</span></button>
     </div>
-
-    <!-- Step 2: Enter PIN -->
-    <div id="step-pin" style="display:none">
-      <div id="pin-greeting" style="color:var(--gold);font-weight:600;margin-bottom:1rem;font-size:1rem"></div>
-      <input class="login-field" type="password" id="pin-input" placeholder="Enter PIN" maxlength="6" onkeydown="if(event.key==='Enter')checkPin()"/>
-      <button class="login-btn" onclick="checkPin()">Sign In</button>
-      <div class="login-error" id="pin-error"></div>
-      <button class="login-back" onclick="backToPick()">← Choose different user</button>
-    </div>
+    <div class="login-divider">or</div>
+    <button class="login-orchamind-btn" onclick="goOrchaMind()">Sign In to Orchamind →</button>
+    <div class="login-footer">Powered by <a href="https://orchamind.com">Orchamind</a> · AI Operations for Contractors</div>
   </div>
 </div>
 
 <header>
   <div class="logo">
-    <svg viewBox="0 0 64 64"><rect width="64" height="64" rx="8" fill="#1C3A2B"/><polygon points="32,6 12,36 52,36" fill="#7A9E7E"/><polygon points="32,16 8,50 56,50" fill="#2E5940"/><rect x="27" y="48" width="10" height="12" rx="2" fill="#8B6340"/><circle cx="32" cy="32" r="30" fill="none" stroke="#C8A96E" stroke-width="2"/></svg>
+    <svg viewBox="0 0 64 64" width="34" height="34"><rect width="64" height="64" rx="8" fill="#1C3A2B"/><polygon points="32,6 12,36 52,36" fill="#7A9E7E"/><polygon points="32,16 8,50 56,50" fill="#2E5940"/><rect x="27" y="48" width="10" height="12" rx="2" fill="#8B6340"/><circle cx="32" cy="32" r="30" fill="none" stroke="#C8A96E" stroke-width="2"/></svg>
     <div><div class="logo-text">Oak <span>Grove</span></div><div class="logo-sub">Site Manager</div></div>
   </div>
   <div class="header-right">
     <span class="date-badge" id="todayDate"></span>
-    <a href="/" class="back-btn">← Back to Site</a>
+    <a href="/" class="back-btn">← Site</a>
+    <button class="logout-btn" onclick="logout()">Log Out</button>
   </div>
 </header>
 
 <div class="main">
-  <!-- KPIs -->
   <div class="kpi-grid">
-    <div class="kpi"><div class="kpi-label">Active Jobs</div><div class="kpi-value" id="kpi-jobs">0</div><div class="kpi-sub">This week</div></div>
-    <div class="kpi"><div class="kpi-label">Crew On Site</div><div class="kpi-value" id="kpi-crew">0</div><div class="kpi-sub">Today</div></div>
-    <div class="kpi"><div class="kpi-label">Leads Today</div><div class="kpi-value" id="kpi-leads">0</div><div class="kpi-sub">Via website</div></div>
-    <div class="kpi"><div class="kpi-label">Estimates Out</div><div class="kpi-value" id="kpi-est">0</div><div class="kpi-sub">Awaiting reply</div></div>
+    <div class="kpi"><div class="kpi-label">Active Jobs</div><div class="kpi-value">4</div><div class="kpi-sub">This week</div></div>
+    <div class="kpi"><div class="kpi-label">Crew On Site</div><div class="kpi-value">4</div><div class="kpi-sub">Today</div></div>
+    <div class="kpi"><div class="kpi-label">Leads Today</div><div class="kpi-value" id="kpi-leads">—</div><div class="kpi-sub">Via website</div></div>
+    <div class="kpi"><div class="kpi-label">Estimates Out</div><div class="kpi-value">2</div><div class="kpi-sub">Awaiting reply</div></div>
   </div>
 
-  <!-- AI Briefing -->
   <div class="ai-box">
     <div class="ai-head">
       <div class="ai-head-left">
         <div class="ai-icon">🌲</div>
-        <div><div class="ai-title">Rudy's Morning Briefing</div><div class="ai-subtitle" id="briefing-time">AI-powered · Oak Grove Tree Care</div></div>
+        <div><div class="ai-title">Rudy's Morning Briefing</div><div class="ai-sub" id="briefing-time">AI-powered · Oak Grove Tree Care</div></div>
       </div>
-      <button class="refresh-btn" id="refreshBtn" onclick="loadBriefing()">Refresh Briefing</button>
+      <button class="refresh-btn" id="refreshBtn" onclick="loadBriefing()">Refresh</button>
     </div>
-    <div class="ai-body loading" id="briefingText">Loading your morning briefing...</div>
+    <div class="ai-body loading" id="briefingText">Click Refresh for your morning briefing...</div>
   </div>
 
-  <!-- Jobs + Leads tabs -->
-  <div class="panel" style="margin-bottom:1.5rem">
+  <!-- Orchamind full access link -->
+  <a class="orchamind-link" href="https://orchamind.com/app" target="_blank">
+    <div class="orchamind-link-icon">◆</div>
+    <div class="orchamind-link-text">
+      <div class="orchamind-link-title">Open Full Orchamind Dashboard</div>
+      <div class="orchamind-link-sub">Jobs · Crew · Estimates · Financials · Full project management</div>
+    </div>
+    <span style="color:var(--gold)">→</span>
+  </a>
+
+  <div class="panel">
     <div class="tab-row">
       <button class="tab active" onclick="switchTab('jobs',this)">Jobs</button>
       <button class="tab" onclick="switchTab('leads',this)">Leads</button>
       <button class="tab" onclick="switchTab('estimates',this)">Estimates</button>
     </div>
     <div class="tab-content active" id="tab-jobs">
-      <ul class="job-list" id="job-list">
-        <li class="job-item urgent">
-          <div><div class="job-name">Johnson Property — Dead Oak Removal</div><div class="job-detail">Orinda · Today 8:00 AM · 3 crew</div></div>
-          <span class="job-badge badge-urgent">Urgent</span>
-        </li>
-        <li class="job-item">
-          <div><div class="job-name">Napa Valley Estate — Land Clearing</div><div class="job-detail">Napa · Tomorrow · 5 crew · 2 days</div></div>
-          <span class="job-badge badge-active">Active</span>
-        </li>
-        <li class="job-item pending">
-          <div><div class="job-name">Walnut Creek HOA — Fire Abatement</div><div class="job-detail">Walnut Creek · Thu–Fri · 4 crew</div></div>
-          <span class="job-badge badge-pending">Scheduled</span>
-        </li>
-        <li class="job-item">
-          <div><div class="job-name">Bay Point Residence — Stump Grinding</div><div class="job-detail">Bay Point · Fri AM · 2 crew</div></div>
-          <span class="job-badge badge-done">Confirmed</span>
-        </li>
+      <ul class="job-list">
+        <li class="job-item urgent"><div><div class="job-name">Johnson Property — Dead Oak Removal</div><div class="job-detail">Orinda · Today 8:00 AM · 3 crew</div></div><span class="job-badge badge-urgent">Urgent</span></li>
+        <li class="job-item"><div><div class="job-name">Napa Valley Estate — Land Clearing</div><div class="job-detail">Napa · Tomorrow · 5 crew · 2 days</div></div><span class="job-badge badge-active">Active</span></li>
+        <li class="job-item pending"><div><div class="job-name">Walnut Creek HOA — Fire Abatement</div><div class="job-detail">Walnut Creek · Thu–Fri · 4 crew</div></div><span class="job-badge badge-pending">Scheduled</span></li>
+        <li class="job-item"><div><div class="job-name">Bay Point Residence — Stump Grinding</div><div class="job-detail">Bay Point · Fri AM · 2 crew</div></div><span class="job-badge badge-done">Confirmed</span></li>
       </ul>
-      <div style="margin-top:1rem"><button class="add-btn" onclick="addJob()">+ Add Job</button></div>
+      <div style="margin-top:1rem"><button class="add-btn" onclick="goOrchaMind()">+ Add Job in Orchamind</button></div>
     </div>
     <div class="tab-content" id="tab-leads">
-      <div style="margin-bottom:1rem;display:flex;align-items:center;justify-content:space-between">
-        <span style="font-size:0.8rem;color:rgba(255,255,255,0.4)">Leads from oakgrovetreecare website form · powered by Orchamind</span>
-        <button class="add-btn" style="padding:0.35rem 0.8rem;font-size:0.75rem" onclick="loadLeads()">↻ Refresh</button>
-      </div>
-      <ul class="job-list" id="lead-list">
-        <li class="job-item pending"><div><div class="job-name">Loading leads...</div><div class="job-detail">Fetching from Orchamind</div></div><span class="job-badge badge-pending">...</span></li>
-      </ul>
-      <div style="margin-top:1rem;padding:0.75rem 1rem;background:rgba(200,169,110,0.06);border-radius:8px;border:1px solid rgba(200,169,110,0.15);font-size:0.75rem;color:rgba(255,255,255,0.35)">
-        ◆ Orchamind · Lead Management · <a href="https://orchamind.com" target="_blank" style="color:var(--gold);text-decoration:none">orchamind.com</a>
-      </div>
+      <ul class="job-list" id="lead-list"><li class="job-item pending"><div><div class="job-name">Loading leads...</div><div class="job-detail">Fetching from Orchamind</div></div></li></ul>
+      <div style="margin-top:1rem;font-size:0.72rem;color:rgba(255,255,255,0.25)">◆ Leads captured via oakgrovetreecare website · managed by Orchamind</div>
     </div>
     <div class="tab-content" id="tab-estimates">
       <ul class="job-list">
-        <li class="job-item"><div><div class="job-name">Martinez Residence — Tree Removal x3</div><div class="job-detail">Sent 3 days ago · $1,800 estimate</div></div><span class="job-badge badge-pending">Awaiting</span></li>
-        <li class="job-item"><div><div class="job-name">Concord Commercial — Trimming Contract</div><div class="job-detail">Sent yesterday · $4,200/yr estimate</div></div><span class="job-badge badge-pending">Awaiting</span></li>
+        <li class="job-item pending"><div><div class="job-name">Martinez Residence — Tree Removal x3</div><div class="job-detail">Sent 3 days ago · $1,800</div></div><span class="job-badge badge-pending">Awaiting</span></li>
+        <li class="job-item pending"><div><div class="job-name">Concord Commercial — Trimming Contract</div><div class="job-detail">Sent yesterday · $4,200/yr</div></div><span class="job-badge badge-pending">Awaiting</span></li>
       </ul>
-      <div style="margin-top:1rem"><button class="add-btn" onclick="addEstimate()">+ New Estimate</button></div>
+      <div style="margin-top:1rem"><button class="add-btn" onclick="goOrchaMind()">+ New Estimate in Orchamind</button></div>
     </div>
   </div>
 
-  <!-- Crew + Chat -->
   <div class="grid-2">
     <div class="panel">
-      <div class="panel-head"><span class="panel-title">Crew</span><button class="add-btn" style="padding:0.35rem 0.8rem;font-size:0.75rem" onclick="addCrew()">+ Add</button></div>
-      <div class="panel-body">
-        <div class="crew-grid" id="crew-grid">
-          <div class="crew-card"><div class="crew-avatar">R</div><div class="crew-name">Rudy</div><div class="crew-role">Owner / Operator</div><div class="crew-status"></div></div>
-          <div class="crew-card"><div class="crew-avatar">M</div><div class="crew-name">Miguel</div><div class="crew-role">Lead Climber</div><div class="crew-status"></div></div>
-          <div class="crew-card"><div class="crew-avatar">J</div><div class="crew-name">Jose</div><div class="crew-role">Ground Crew</div><div class="crew-status"></div></div>
-          <div class="crew-card"><div class="crew-avatar">C</div><div class="crew-name">Carlos</div><div class="crew-role">Equipment Op.</div><div class="crew-status"></div></div>
+      <div class="panel-head"><span class="panel-title">Crew</span></div>
+      <div style="padding:1.2rem">
+        <div class="crew-grid">
+          <div class="crew-card"><div class="crew-avatar">R</div><div class="crew-name">Rudy</div><div class="crew-role">Owner</div></div>
+          <div class="crew-card"><div class="crew-avatar">M</div><div class="crew-name">Miguel</div><div class="crew-role">Lead Climber</div></div>
+          <div class="crew-card"><div class="crew-avatar">J</div><div class="crew-name">Jose</div><div class="crew-role">Ground Crew</div></div>
+          <div class="crew-card"><div class="crew-avatar">C</div><div class="crew-name">Carlos</div><div class="crew-role">Equipment Op.</div></div>
         </div>
       </div>
     </div>
     <div class="chat-section">
-      <div class="panel-head" style="padding:1rem 1.2rem;border-bottom:1px solid rgba(255,255,255,0.07)"><span class="panel-title">Ask Rudy's AI</span></div>
+      <div class="panel-head" style="padding:0.9rem 1.2rem"><span class="panel-title">Ask AI</span></div>
       <div class="chat-messages" id="chatMessages">
-        <div class="msg">
-          <div class="msg-avatar ai">AI</div>
-          <div class="msg-bubble">Hey Rudy! What's on your mind today? Ask me about jobs, crew, pricing, or anything Oak Grove related.</div>
-        </div>
+        <div class="msg"><div class="msg-avatar ai">AI</div><div class="msg-bubble">Hey Rudy! Ask me anything about jobs, crew, pricing, or scheduling.</div></div>
       </div>
       <div class="chat-input-row">
         <input class="chat-input" id="chatInput" placeholder="Ask anything..." onkeydown="if(event.key==='Enter')sendChat()"/>
@@ -253,170 +223,82 @@ header{background:rgba(28,58,43,0.95);backdrop-filter:blur(10px);padding:1rem 2r
 </div>
 
 <script>
-
-// Login system
-const PINS = { 'Rudy': '1234', 'Miguel': '2345', 'Jose': '3456', 'Carlos': '4567' };
-let currentUser = null;
-
-// Always require login on page load
-
-function pickUser(name, role, initial) {
-  currentUser = name;
-  document.getElementById('step-pick').style.display = 'none';
-  document.getElementById('step-pin').style.display = 'block';
-  document.getElementById('pin-greeting').textContent = 'Welcome, ' + name + '!';
-  document.getElementById('pin-input').value = '';
-  document.getElementById('pin-error').textContent = '';
-  setTimeout(() => document.getElementById('pin-input').focus(), 100);
-}
-
-function checkPin() {
-  const entered = document.getElementById('pin-input').value;
-  if (entered === PINS[currentUser]) {
-    document.getElementById('login-screen').style.display = 'none';
-    document.querySelector('.logo-text').innerHTML = 'Oak <span>Grove</span> · ' + currentUser;
-    if (currentUser === 'Rudy') loadBriefing();
-  } else {
-    document.getElementById('pin-error').textContent = 'Incorrect PIN. Try again.';
-    document.getElementById('pin-input').value = '';
-  }
-}
-
-function backToPick() {
-  document.getElementById('step-pin').style.display = 'none';
-  document.getElementById('step-pick').style.display = 'block';
-  currentUser = null;
-}
-
 // Date
-const d = new Date();
-document.getElementById('todayDate').textContent = d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+document.getElementById('todayDate').textContent = new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
 
-// KPI counters
-document.getElementById('kpi-jobs').textContent = 4;
-document.getElementById('kpi-crew').textContent = 4;
-document.getElementById('kpi-leads').textContent = 2;
-document.getElementById('kpi-est').textContent = 2;
+// Login / logout
+function goOrchaMind() { window.open('https://orchamind.com/app','_blank'); }
+function logout() { document.getElementById('login-screen').style.display='flex'; }
 
 // Tabs
 function switchTab(name, btn) {
-  if (name === 'leads') loadLeads();
-  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
   btn.classList.add('active');
+  if(name==='leads') loadLeads();
+}
+
+// Leads from Orchamind
+async function loadLeads() {
+  const list = document.getElementById('lead-list');
+  list.innerHTML='<li class="job-item pending"><div><div class="job-name">Fetching from Orchamind...</div></div></li>';
+  try {
+    const res = await fetch('https://orchamind-site-three.vercel.app/api/leads?business=Oak+Grove+Tree+Care');
+    const data = await res.json();
+    const leads = Array.isArray(data)?data:(data.leads||[]);
+    if(!leads.length){list.innerHTML='<li class="job-item"><div><div class="job-name">No leads yet</div><div class="job-detail">New website submissions will appear here</div></div></li>';document.getElementById('kpi-leads').textContent='0';return;}
+    document.getElementById('kpi-leads').textContent=leads.length;
+    list.innerHTML=leads.slice(0,10).map(l=>{
+      const when=new Date(l.timestamp||Date.now()).toLocaleDateString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
+      return '<li class="job-item pending"><div><div class="job-name">'+(l.name||'Unknown')+' — '+(l.service||'Inquiry')+'</div><div class="job-detail">'+(l.phone||'')+(l.email?' · '+l.email:'')+' · '+when+'</div></div><span class="job-badge badge-pending">New</span></li>';
+    }).join('');
+  } catch(e){list.innerHTML='<li class="job-item"><div><div class="job-name">Could not load leads</div><div class="job-detail">'+e.message+'</div></div></li>';}
 }
 
 // AI Briefing
 async function loadBriefing() {
-  const btn = document.getElementById('refreshBtn');
-  const box = document.getElementById('briefingText');
-  btn.disabled = true;
-  btn.textContent = 'Loading...';
-  box.className = 'ai-body loading';
-  box.textContent = 'Rudy's AI is analyzing your day...';
-
-  const systemPrompt = `You are the AI operations assistant for Oak Grove Tree Care, owned by Rudy De Rosas.
-Business: Tree removal, trimming, stump grinding, land clearing, fire prevention. Bay Area & Napa Valley since 2002. CSLB #1113014. Phone: (925) 565-4505.
-Current jobs: Dead oak removal in Orinda (urgent, today), Napa Valley estate land clearing (tomorrow, 2 days), Walnut Creek HOA fire abatement (Thu-Fri), Bay Point stump grinding (Fri AM).
-Crew: Rudy (owner), Miguel (lead climber), Jose (ground crew), Carlos (equipment operator). 4 active crew.
-Leads: 2 new website leads today.
-Estimates pending: Martinez residence tree removal $1,800 (3 days old), Concord commercial trimming contract $4,200/yr (1 day old).
-Give Rudy a warm, practical morning briefing. Highlight the urgent Orinda job first, flag the pending estimates that need follow-up, and give a brief tip for the day. Keep it under 120 words. Conversational, not robotic.`;
-
+  const btn=document.getElementById('refreshBtn');
+  const box=document.getElementById('briefingText');
+  btn.disabled=true;btn.textContent='Loading...';
+  box.className='ai-body loading';box.textContent='Analyzing your day...';
   try {
-    const res = await fetch('/api/claude', {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({
-        system: systemPrompt,
-        messages: [{role:'user', content:'Good morning! Give me my daily briefing.'}]
-      })
-    });
-    const data = await res.json();
-    const text = data.content?.[0]?.text || 'Could not load briefing. Call Rudy at (925) 565-4505.';
-    box.className = 'ai-body';
-    box.innerHTML = text.replace(/\n/g,'<br>');
-    document.getElementById('briefing-time').textContent = 'Updated ' + new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-  } catch(e) {
-    box.className = 'ai-body';
-    box.textContent = 'Could not reach AI service. Check your connection. ' + e.message;
-  }
-  btn.disabled = false;
-  btn.textContent = 'Refresh Briefing';
+    const res=await fetch('/api/claude',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+      system:'You are the AI assistant for Oak Grove Tree Care owned by Rudy De Rosas. CSLB #1113014. Phone: (925) 565-4505. Bay Area & Napa Valley. Current jobs: Dead oak removal Orinda (urgent today), Napa Valley land clearing (tomorrow 2 days), Walnut Creek HOA fire abatement (Thu-Fri), Bay Point stump grinding (Fri AM). Crew: Rudy, Miguel, Jose, Carlos. 2 new leads today. 2 estimates pending reply. Give Rudy a warm practical morning briefing under 100 words. Start with the most urgent item.',
+      messages:[{role:'user',content:'Good morning, give me my briefing.'}]
+    })});
+    const data=await res.json();
+    const text=data.content?.[0]?.text||'Could not load briefing.';
+    box.className='ai-body';box.innerHTML=text.replace(/
+/g,'<br>');
+    document.getElementById('briefing-time').textContent='Updated '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+  } catch(e){box.className='ai-body';box.textContent='Could not reach AI. '+e.message;}
+  btn.disabled=false;btn.textContent='Refresh';
 }
 
 // Chat
-const SYS = `You are Rudy's AI assistant for Oak Grove Tree Care. Owner: Rudy De Rosas. Phone: (925) 565-4505. CSLB #1113014. Bay Area & Napa Valley tree removal, trimming, stump grinding, land clearing, fire prevention. Crew: Rudy, Miguel, Jose, Carlos. Be direct and helpful. Answer questions about jobs, pricing, crew, scheduling, and business operations.`;
-let chatHistory = [];
-
-async function sendChat() {
-  const input = document.getElementById('chatInput');
-  const msg = input.value.trim();
-  if (!msg) return;
-  input.value = '';
-
-  addChatMsg('user', msg);
-  chatHistory.push({role:'user', content:msg});
-
-  const typing = addChatMsg('ai', '...');
-  try {
-    const res = await fetch('/api/claude', {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({system: SYS, messages: chatHistory})
-    });
-    const data = await res.json();
-    const reply = data.content?.[0]?.text || 'Sorry, could not get a response.';
-    typing.querySelector('.msg-bubble').innerHTML = reply.replace(/\n/g,'<br>');
-    chatHistory.push({role:'assistant', content:reply});
-  } catch(e) {
-    typing.querySelector('.msg-bubble').textContent = 'Connection error: ' + e.message;
-  }
+const SYS='You are Rudy's AI assistant for Oak Grove Tree Care. Owner: Rudy De Rosas. (925) 565-4505. CSLB #1113014. Bay Area & Napa Valley. Tree removal, trimming, stump grinding, land clearing, fire prevention. Crew: Rudy, Miguel, Jose, Carlos. Be direct and practical.';
+let chatHistory=[];
+async function sendChat(){
+  const input=document.getElementById('chatInput');
+  const msg=input.value.trim();if(!msg)return;input.value='';
+  addMsg('user',msg);chatHistory.push({role:'user',content:msg});
+  const t=addMsg('ai','...');
+  try{
+    const res=await fetch('/api/claude',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({system:SYS,messages:chatHistory})});
+    const data=await res.json();
+    const reply=data.content?.[0]?.text||'Sorry, no response.';
+    t.querySelector('.msg-bubble').innerHTML=reply.replace(/
+/g,'<br>');
+    chatHistory.push({role:'assistant',content:reply});
+  }catch(e){t.querySelector('.msg-bubble').textContent='Error: '+e.message;}
 }
-
-function addChatMsg(role, text) {
-  const box = document.getElementById('chatMessages');
-  const d = document.createElement('div');
-  d.className = 'msg' + (role==='user'?' user':'');
-  d.innerHTML = `<div class="msg-avatar ${role==='user'?'rudy':'ai'}">${role==='user'?'R':'AI'}</div><div class="msg-bubble">${text}</div>`;
-  box.appendChild(d);
-  box.scrollTop = box.scrollHeight;
-  return d;
+function addMsg(role,text){
+  const box=document.getElementById('chatMessages');
+  const d=document.createElement('div');d.className='msg'+(role==='user'?' user':'');
+  d.innerHTML='<div class="msg-avatar '+( role==='user'?'user':'ai')+'">'+(role==='user'?'R':'AI')+'</div><div class="msg-bubble">'+text+'</div>';
+  box.appendChild(d);box.scrollTop=box.scrollHeight;return d;
 }
-
-async function loadLeads() {
-  const list = document.getElementById('lead-list');
-  list.innerHTML = '<li class="job-item pending"><div><div class="job-name">Fetching from Orchamind...</div></div></li>';
-  try {
-    const res = await fetch('https://orchamind-site-three.vercel.app/api/leads?business=Oak+Grove+Tree+Care', {
-      method: 'GET',
-      headers: {'Content-Type':'application/json'}
-    });
-    if (!res.ok) throw new Error('Status ' + res.status);
-    const data = await res.json();
-    const leads = Array.isArray(data) ? data : (data.leads || []);
-    if (leads.length === 0) {
-      list.innerHTML = '<li class="job-item"><div><div class="job-name">No leads yet</div><div class="job-detail">New website submissions will appear here</div></div></li>';
-      return;
-    }
-    list.innerHTML = leads.slice(0,10).map(l => {
-      const d = new Date(l.timestamp || l.created_at || Date.now());
-      const when = d.toLocaleDateString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
-      return '<li class="job-item pending"><div><div class="job-name">' + (l.name||'Unknown') + ' — ' + (l.service||'General Inquiry') + '</div><div class="job-detail">' + (l.phone||'') + (l.email?' · '+l.email:'') + ' · ' + when + '</div></div><span class="job-badge badge-pending">New</span></li>';
-    }).join('');
-    document.getElementById('kpi-leads').textContent = leads.length;
-  } catch(e) {
-    list.innerHTML = '<li class="job-item"><div><div class="job-name">Could not load leads</div><div class="job-detail">' + e.message + '</div></div></li>';
-  }
-}
-
-function addJob() { alert('Job management coming soon — log jobs here.'); }
-function addCrew() { alert('Crew management coming soon.'); }
-function addEstimate() { alert('Estimate builder coming soon.'); }
-
-// Auto-load briefing on open
-loadBriefing();
 </script>
 </body>
 </html>

@@ -81,9 +81,67 @@ header{background:rgba(28,58,43,0.95);backdrop-filter:blur(10px);padding:1rem 2r
 .tab-content.active{display:block}
 @media(max-width:900px){.kpi-grid{grid-template-columns:repeat(2,1fr)}.grid-2{grid-template-columns:1fr}}
 @media(max-width:600px){.kpi-grid{grid-template-columns:repeat(2,1fr)}.main{padding:1rem}}
+
+#login-screen{position:fixed;inset:0;background:#0a1209;z-index:999;display:flex;align-items:center;justify-content:center;padding:1.5rem}
+.login-box{background:rgba(28,58,43,0.7);border:1px solid rgba(200,169,110,0.3);border-radius:16px;padding:2.5rem;width:100%;max-width:380px;text-align:center}
+.login-logo{margin-bottom:1.5rem}
+.login-logo svg{width:56px;height:56px}
+.login-title{font-family:'Playfair Display',serif;font-size:1.6rem;color:#fff;margin-bottom:0.4rem}
+.login-sub{font-size:0.82rem;color:rgba(255,255,255,0.4);margin-bottom:2rem}
+.login-field{width:100%;background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.12);border-radius:8px;padding:0.85rem 1rem;color:#fff;font-family:'Inter',sans-serif;font-size:1rem;outline:none;margin-bottom:0.85rem;text-align:center;letter-spacing:0.1em}
+.login-field:focus{border-color:var(--gold)}
+.login-btn{width:100%;background:var(--gold);color:var(--green);border:none;border-radius:8px;padding:0.9rem;font-family:'Inter',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;transition:opacity 0.2s}
+.login-btn:hover{opacity:0.88}
+.login-error{color:#e74c3c;font-size:0.82rem;margin-top:0.6rem;min-height:1.2em}
+.user-select{display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1.2rem}
+.user-btn{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:0.85rem;color:#fff;font-family:'Inter',sans-serif;font-size:0.92rem;cursor:pointer;transition:background 0.2s;text-align:left;display:flex;align-items:center;gap:0.75rem}
+.user-btn:hover{background:rgba(255,255,255,0.12)}
+.user-btn .ub-avatar{width:36px;height:36px;border-radius:50%;background:rgba(200,169,110,0.2);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--gold);flex-shrink:0}
+.user-btn .ub-name{font-weight:600}
+.user-btn .ub-role{font-size:0.72rem;color:rgba(255,255,255,0.4)}
+.login-back{background:none;border:none;color:rgba(255,255,255,0.35);font-size:0.8rem;cursor:pointer;margin-top:0.75rem;font-family:'Inter',sans-serif}
+.login-back:hover{color:rgba(255,255,255,0.6)}
 </style>
 </head>
 <body>
+
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">
+      <svg viewBox="0 0 64 64"><rect width="64" height="64" rx="8" fill="#1C3A2B"/><polygon points="32,6 12,36 52,36" fill="#7A9E7E"/><polygon points="32,16 8,50 56,50" fill="#2E5940"/><rect x="27" y="48" width="10" height="12" rx="2" fill="#8B6340"/><circle cx="32" cy="32" r="30" fill="none" stroke="#C8A96E" stroke-width="2"/></svg>
+    </div>
+    <div class="login-title">Oak Grove</div>
+    <div class="login-sub">Site Manager · Crew Login</div>
+
+    <!-- Step 1: Pick user -->
+    <div id="step-pick">
+      <div class="user-select">
+        <button class="user-btn" onclick="pickUser('Rudy','Owner / Operator','R')">
+          <div class="ub-avatar">R</div><div><div class="ub-name">Rudy De Rosas</div><div class="ub-role">Owner / Operator</div></div>
+        </button>
+        <button class="user-btn" onclick="pickUser('Miguel','Lead Climber','M')">
+          <div class="ub-avatar">M</div><div><div class="ub-name">Miguel</div><div class="ub-role">Lead Climber</div></div>
+        </button>
+        <button class="user-btn" onclick="pickUser('Jose','Ground Crew','J')">
+          <div class="ub-avatar">J</div><div><div class="ub-name">Jose</div><div class="ub-role">Ground Crew</div></div>
+        </button>
+        <button class="user-btn" onclick="pickUser('Carlos','Equipment Operator','C')">
+          <div class="ub-avatar">C</div><div><div class="ub-name">Carlos</div><div class="ub-role">Equipment Operator</div></div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 2: Enter PIN -->
+    <div id="step-pin" style="display:none">
+      <div id="pin-greeting" style="color:var(--gold);font-weight:600;margin-bottom:1rem;font-size:1rem"></div>
+      <input class="login-field" type="password" id="pin-input" placeholder="Enter PIN" maxlength="6" onkeydown="if(event.key==='Enter')checkPin()"/>
+      <button class="login-btn" onclick="checkPin()">Sign In</button>
+      <div class="login-error" id="pin-error"></div>
+      <button class="login-back" onclick="backToPick()">← Choose different user</button>
+    </div>
+  </div>
+</div>
+
 <header>
   <div class="logo">
     <svg viewBox="0 0 64 64"><rect width="64" height="64" rx="8" fill="#1C3A2B"/><polygon points="32,6 12,36 52,36" fill="#7A9E7E"/><polygon points="32,16 8,50 56,50" fill="#2E5940"/><rect x="27" y="48" width="10" height="12" rx="2" fill="#8B6340"/><circle cx="32" cy="32" r="30" fill="none" stroke="#C8A96E" stroke-width="2"/></svg>
@@ -188,6 +246,46 @@ header{background:rgba(28,58,43,0.95);backdrop-filter:blur(10px);padding:1rem 2r
 </div>
 
 <script>
+
+// Login system
+const PINS = { 'Rudy': '1234', 'Miguel': '2345', 'Jose': '3456', 'Carlos': '4567' };
+let currentUser = null;
+
+// Check if already logged in this session
+if (sessionStorage.getItem('ogLoggedIn')) {
+  document.getElementById('login-screen').style.display = 'none';
+  currentUser = sessionStorage.getItem('ogUser');
+}
+
+function pickUser(name, role, initial) {
+  currentUser = name;
+  document.getElementById('step-pick').style.display = 'none';
+  document.getElementById('step-pin').style.display = 'block';
+  document.getElementById('pin-greeting').textContent = 'Welcome, ' + name + '!';
+  document.getElementById('pin-input').value = '';
+  document.getElementById('pin-error').textContent = '';
+  setTimeout(() => document.getElementById('pin-input').focus(), 100);
+}
+
+function checkPin() {
+  const entered = document.getElementById('pin-input').value;
+  if (entered === PINS[currentUser]) {
+    sessionStorage.setItem('ogLoggedIn', '1');
+    sessionStorage.setItem('ogUser', currentUser);
+    document.getElementById('login-screen').style.display = 'none';
+    document.querySelector('.logo-text').innerHTML = 'Oak <span>Grove</span> · ' + currentUser;
+  } else {
+    document.getElementById('pin-error').textContent = 'Incorrect PIN. Try again.';
+    document.getElementById('pin-input').value = '';
+  }
+}
+
+function backToPick() {
+  document.getElementById('step-pin').style.display = 'none';
+  document.getElementById('step-pick').style.display = 'block';
+  currentUser = null;
+}
+
 // Date
 const d = new Date();
 document.getElementById('todayDate').textContent = d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});

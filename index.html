@@ -196,19 +196,18 @@ footer a{color:var(--gold);text-decoration:none}
 .footer-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-top:0.75rem}
 .footer-links a{color:rgba(255,255,255,0.45);text-decoration:none}
 .footer-links a:hover{color:var(--gold)}
-.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;z-index:300}
-.hamburger span{width:24px;height:2px;background:#fff;border-radius:2px;transition:all 0.3s}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:300}
+.hamburger span{width:22px;height:2px;background:#fff;border-radius:2px;transition:all 0.3s}
 .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(28,58,43,0.98);z-index:250;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem}
+.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:rgba(18,42,28,0.98);backdrop-filter:blur(12px);z-index:200;flex-direction:column;border-bottom:2px solid var(--gold);box-shadow:0 8px 32px rgba(0,0,0,0.4)}
 .mobile-menu.open{display:flex}
-.mobile-menu a{color:#fff;text-decoration:none;font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;transition:color 0.2s}
-.mobile-menu a:hover{color:var(--gold)}
-.mobile-menu .mob-cta{background:var(--gold);color:var(--green)!important;padding:0.9rem 2.5rem;border-radius:6px;font-size:1.4rem!important}
+.mobile-menu a{color:rgba(255,255,255,0.9);text-decoration:none;font-family:'Inter',sans-serif;font-size:1rem;font-weight:500;padding:1rem 1.8rem;border-bottom:1px solid rgba(255,255,255,0.07);letter-spacing:0.03em;transition:background 0.2s,color 0.2s}
+.mobile-menu a:hover{background:rgba(255,255,255,0.06);color:var(--gold)}
+.mobile-menu .mob-cta{background:var(--gold);color:var(--green)!important;font-weight:700;text-align:center;margin:1rem 1.5rem 1.2rem;border-radius:6px;border-bottom:none;padding:0.9rem}
 @media(max-width:900px){.services-grid{grid-template-columns:1fr 1fr}.fire-strip-inner{grid-template-columns:1fr}.about-inner{grid-template-columns:1fr}.contact-split{grid-template-columns:1fr;gap:2.5rem}}
-@media(max-width:640px){nav{padding:1rem 1.2rem}.nav-links{display:none}
-.hamburger{display:flex}.services-grid{grid-template-columns:1fr}.oform-row{grid-template-columns:1fr}.hero-badges{gap:1rem;bottom:1.5rem}section{padding:3.5rem 1.2rem}.trust-bar{gap:1rem}}
+@media(max-width:640px){nav{padding:1rem 1.2rem}.nav-links{display:none}.hamburger{display:flex}.services-grid{grid-template-columns:1fr}.oform-row{grid-template-columns:1fr}.hero-badges{gap:1rem;bottom:1.5rem}section{padding:3.5rem 1.2rem}.trust-bar{gap:1rem}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -224,12 +223,12 @@ footer a{color:var(--gold);text-decoration:none}
   <ul class="nav-links"><li><a href="#services">Services</a></li><li><a href="#about">About</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#faq">FAQ</a></li><li><a href="#ask">Ask AI</a></li><li><a href="#contact" class="nav-cta">Free Estimate</a></li></ul>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#services" onclick="toggleMenu()">Services</a>
-  <a href="#about" onclick="toggleMenu()">About</a>
-  <a href="#reviews" onclick="toggleMenu()">Reviews</a>
-  <a href="#faq" onclick="toggleMenu()">FAQ</a>
-  <a href="#ask" onclick="toggleMenu()">Ask AI</a>
-  <a href="#contact" class="mob-cta" onclick="toggleMenu()">Free Estimate</a>
+  <a href="#services" onclick="toggleMenu()">🌲 Services</a>
+  <a href="#about" onclick="toggleMenu()">👷 About Rudy</a>
+  <a href="#reviews" onclick="toggleMenu()">⭐ Reviews</a>
+  <a href="#faq" onclick="toggleMenu()">❓ FAQ</a>
+  <a href="#ask" onclick="toggleMenu()">🤖 Ask AI</a>
+  <a href="#contact" class="mob-cta" onclick="toggleMenu()">Get a Free Estimate</a>
 </div>
 <section class="hero">
   <div class="hero-slide slide-0 active"></div><div class="hero-slide slide-1"></div><div class="hero-slide slide-2"></div><div class="hero-slide slide-3"></div>

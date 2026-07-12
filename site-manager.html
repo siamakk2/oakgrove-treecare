@@ -203,9 +203,16 @@ header{background:rgba(28,58,43,0.95);backdrop-filter:blur(10px);padding:1rem 2r
       <div style="margin-top:1rem"><button class="add-btn" onclick="addJob()">+ Add Job</button></div>
     </div>
     <div class="tab-content" id="tab-leads">
+      <div style="margin-bottom:1rem;display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:0.8rem;color:rgba(255,255,255,0.4)">Leads from oakgrovetreecare website form · powered by Orchamind</span>
+        <button class="add-btn" style="padding:0.35rem 0.8rem;font-size:0.75rem" onclick="loadLeads()">↻ Refresh</button>
+      </div>
       <ul class="job-list" id="lead-list">
-        <li class="job-item pending"><div><div class="job-name">New Lead — Website Form</div><div class="job-detail">Loading recent leads...</div></div><span class="job-badge badge-pending">New</span></li>
+        <li class="job-item pending"><div><div class="job-name">Loading leads...</div><div class="job-detail">Fetching from Orchamind</div></div><span class="job-badge badge-pending">...</span></li>
       </ul>
+      <div style="margin-top:1rem;padding:0.75rem 1rem;background:rgba(200,169,110,0.06);border-radius:8px;border:1px solid rgba(200,169,110,0.15);font-size:0.75rem;color:rgba(255,255,255,0.35)">
+        ◆ Orchamind · Lead Management · <a href="https://orchamind.com" target="_blank" style="color:var(--gold);text-decoration:none">orchamind.com</a>
+      </div>
     </div>
     <div class="tab-content" id="tab-estimates">
       <ul class="job-list">
@@ -251,11 +258,7 @@ header{background:rgba(28,58,43,0.95);backdrop-filter:blur(10px);padding:1rem 2r
 const PINS = { 'Rudy': '1234', 'Miguel': '2345', 'Jose': '3456', 'Carlos': '4567' };
 let currentUser = null;
 
-// Check if already logged in this session
-if (sessionStorage.getItem('ogLoggedIn')) {
-  document.getElementById('login-screen').style.display = 'none';
-  currentUser = sessionStorage.getItem('ogUser');
-}
+// Always require login on page load
 
 function pickUser(name, role, initial) {
   currentUser = name;
@@ -270,10 +273,9 @@ function pickUser(name, role, initial) {
 function checkPin() {
   const entered = document.getElementById('pin-input').value;
   if (entered === PINS[currentUser]) {
-    sessionStorage.setItem('ogLoggedIn', '1');
-    sessionStorage.setItem('ogUser', currentUser);
     document.getElementById('login-screen').style.display = 'none';
     document.querySelector('.logo-text').innerHTML = 'Oak <span>Grove</span> · ' + currentUser;
+    if (currentUser === 'Rudy') loadBriefing();
   } else {
     document.getElementById('pin-error').textContent = 'Incorrect PIN. Try again.';
     document.getElementById('pin-input').value = '';
@@ -298,6 +300,7 @@ document.getElementById('kpi-est').textContent = 2;
 
 // Tabs
 function switchTab(name, btn) {
+  if (name === 'leads') loadLeads();
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
@@ -380,6 +383,32 @@ function addChatMsg(role, text) {
   box.appendChild(d);
   box.scrollTop = box.scrollHeight;
   return d;
+}
+
+async function loadLeads() {
+  const list = document.getElementById('lead-list');
+  list.innerHTML = '<li class="job-item pending"><div><div class="job-name">Fetching from Orchamind...</div></div></li>';
+  try {
+    const res = await fetch('https://orchamind-site-three.vercel.app/api/leads?business=Oak+Grove+Tree+Care', {
+      method: 'GET',
+      headers: {'Content-Type':'application/json'}
+    });
+    if (!res.ok) throw new Error('Status ' + res.status);
+    const data = await res.json();
+    const leads = Array.isArray(data) ? data : (data.leads || []);
+    if (leads.length === 0) {
+      list.innerHTML = '<li class="job-item"><div><div class="job-name">No leads yet</div><div class="job-detail">New website submissions will appear here</div></div></li>';
+      return;
+    }
+    list.innerHTML = leads.slice(0,10).map(l => {
+      const d = new Date(l.timestamp || l.created_at || Date.now());
+      const when = d.toLocaleDateString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
+      return '<li class="job-item pending"><div><div class="job-name">' + (l.name||'Unknown') + ' — ' + (l.service||'General Inquiry') + '</div><div class="job-detail">' + (l.phone||'') + (l.email?' · '+l.email:'') + ' · ' + when + '</div></div><span class="job-badge badge-pending">New</span></li>';
+    }).join('');
+    document.getElementById('kpi-leads').textContent = leads.length;
+  } catch(e) {
+    list.innerHTML = '<li class="job-item"><div><div class="job-name">Could not load leads</div><div class="job-detail">' + e.message + '</div></div></li>';
+  }
 }
 
 function addJob() { alert('Job management coming soon — log jobs here.'); }

@@ -47,12 +47,12 @@ nav.scrolled{background:rgba(28,58,43,0.97);backdrop-filter:blur(8px)}
 .slide-1{background-image:url('https://raw.githubusercontent.com/siamakk2/oakgrove-treecare/main/images/img-arborist-cut.jpg')}
 .slide-2{background-image:url('https://raw.githubusercontent.com/siamakk2/oakgrove-treecare/main/images/img-bucket-truck.jpg')}
 .slide-3{background-image:url('https://raw.githubusercontent.com/siamakk2/oakgrove-treecare/main/images/img-weed-worker.jpg')}
-.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(10,25,16,0.52) 0%,rgba(10,25,16,0.70) 55%,rgba(10,25,16,0.90) 100%)}
+.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(5,15,8,0.60) 0%,rgba(5,15,8,0.78) 55%,rgba(5,15,8,0.93) 100%)}
 .hero-content{position:relative;z-index:2;text-align:center;padding:2rem;max-width:860px}
 .hero-eyebrow{display:inline-block;font-size:0.72rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;border:1px solid rgba(200,169,110,0.4);padding:0.35rem 1rem;border-radius:2px}
 .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,6.5vw,5rem);font-weight:700;color:#fff;line-height:1.08;margin-bottom:1.2rem}
 .hero h1 em{font-style:italic;color:var(--sage)}
-.hero-sub{font-size:clamp(1rem,2vw,1.18rem);color:rgba(255,255,255,0.82);max-width:580px;margin:0 auto 2rem;font-weight:300}
+.hero-sub{font-size:clamp(1rem,2vw,1.18rem);color:rgba(255,255,255,0.96);max-width:580px;margin:0 auto 2rem;font-weight:300}
 .hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
 .btn-primary{background:var(--gold);color:var(--green);border:none;padding:0.9rem 2.2rem;font-size:0.95rem;font-weight:700;border-radius:4px;text-decoration:none;transition:background 0.2s,transform 0.15s;display:inline-block}
 .btn-primary:hover{background:#d4b87a;transform:translateY(-2px)}
@@ -196,8 +196,19 @@ footer a{color:var(--gold);text-decoration:none}
 .footer-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-top:0.75rem}
 .footer-links a{color:rgba(255,255,255,0.45);text-decoration:none}
 .footer-links a:hover{color:var(--gold)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;z-index:300}
+.hamburger span{width:24px;height:2px;background:#fff;border-radius:2px;transition:all 0.3s}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(28,58,43,0.98);z-index:250;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:#fff;text-decoration:none;font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;transition:color 0.2s}
+.mobile-menu a:hover{color:var(--gold)}
+.mobile-menu .mob-cta{background:var(--gold);color:var(--green)!important;padding:0.9rem 2.5rem;border-radius:6px;font-size:1.4rem!important}
 @media(max-width:900px){.services-grid{grid-template-columns:1fr 1fr}.fire-strip-inner{grid-template-columns:1fr}.about-inner{grid-template-columns:1fr}.contact-split{grid-template-columns:1fr;gap:2.5rem}}
-@media(max-width:640px){nav{padding:1rem 1.2rem}.nav-links{display:none}.services-grid{grid-template-columns:1fr}.oform-row{grid-template-columns:1fr}.hero-badges{gap:1rem;bottom:1.5rem}section{padding:3.5rem 1.2rem}.trust-bar{gap:1rem}}
+@media(max-width:640px){nav{padding:1rem 1.2rem}.nav-links{display:none}
+.hamburger{display:flex}.services-grid{grid-template-columns:1fr}.oform-row{grid-template-columns:1fr}.hero-badges{gap:1rem;bottom:1.5rem}section{padding:3.5rem 1.2rem}.trust-bar{gap:1rem}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -207,8 +218,19 @@ footer a{color:var(--gold);text-decoration:none}
     <svg width="36" height="36" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="8" fill="#1C3A2B"/><polygon points="32,6 12,36 52,36" fill="#7A9E7E"/><polygon points="32,16 8,50 56,50" fill="#2E5940"/><rect x="27" y="48" width="10" height="12" rx="2" fill="#8B6340"/><circle cx="32" cy="32" r="30" fill="none" stroke="#C8A96E" stroke-width="2"/></svg>
     <div><div class="nav-logo-text">Oak <span>Grove</span></div><div class="nav-logo-sub">Tree Care</div></div>
   </a>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
   <ul class="nav-links"><li><a href="#services">Services</a></li><li><a href="#about">About</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#faq">FAQ</a></li><li><a href="#ask">Ask AI</a></li><li><a href="#contact" class="nav-cta">Free Estimate</a></li></ul>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#reviews" onclick="toggleMenu()">Reviews</a>
+  <a href="#faq" onclick="toggleMenu()">FAQ</a>
+  <a href="#ask" onclick="toggleMenu()">Ask AI</a>
+  <a href="#contact" class="mob-cta" onclick="toggleMenu()">Free Estimate</a>
+</div>
 <section class="hero">
   <div class="hero-slide slide-0 active"></div><div class="hero-slide slide-1"></div><div class="hero-slide slide-2"></div><div class="hero-slide slide-3"></div>
   <div class="hero-overlay"></div>
@@ -261,6 +283,13 @@ const SYS='You are the AI assistant for Oak Grove Tree Care, Bay Point CA. Owner
 let history=[];
 function addMsg(role,text,typing){const box=document.getElementById('chat-box');const d=document.createElement('div');d.style.cssText='display:flex;gap:0.75rem;align-items:flex-start;';const isA=role==='assistant';const av=isA?'<div style="width:34px;height:34px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:serif;font-weight:700;font-size:0.9rem;color:var(--green);">R</div>':'<div style="width:34px;height:34px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.72rem;color:#fff;">You</div>';const bgS=isA?'background:rgba(255,255,255,0.09);border-radius:0 10px 10px 10px;':'background:rgba(200,169,110,0.9);border-radius:10px 0 10px 10px;';const clr=isA?'rgba(255,255,255,0.9)':'#1C3A2B';if(typing){d.innerHTML=av+'<div id="typing-indicator" style="'+bgS+'padding:0.85rem 1.1rem;max-width:82%;color:'+clr+'"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>';}else{const f=text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');d.innerHTML=av+'<div style="'+bgS+'padding:0.85rem 1.1rem;font-size:0.9rem;line-height:1.65;max-width:82%;color:'+clr+'">'+f+'</div>';}box.appendChild(d);box.scrollTop=box.scrollHeight;return d;}
 async function sendChat(){const input=document.getElementById('chat-input');const txt=input.value.trim();if(!txt)return;input.value='';document.getElementById('suggestions').style.display='none';addMsg('user',txt);history.push({role:'user',content:txt});const t=addMsg('assistant','',true);try{const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,system:SYS,messages:history})});const data=await r.json();const reply=data.content?.[0]?.text||'Having trouble connecting. Please call Rudy at (925) 565-4505!';t.remove();addMsg('assistant',reply);history.push({role:'assistant',content:reply});}catch(e){t.remove();addMsg('assistant','Connection issue. Call Rudy at (925) 565-4505!');}}
+function toggleMenu(){
+  const h=document.getElementById('hamburger');
+  const m=document.getElementById('mobileMenu');
+  h.classList.toggle('open');
+  m.classList.toggle('open');
+  document.body.style.overflow=m.classList.contains('open')?'hidden':'';
+}
 function askSuggestion(btn){document.getElementById('chat-input').value=btn.textContent;sendChat();}
 </script>
 </body>

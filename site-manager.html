@@ -117,13 +117,13 @@ header{background:rgba(28,58,43,0.95);backdrop-filter:blur(10px);padding:1rem 2r
     <div class="login-title">Oak Grove</div>
     <div class="login-sub">Site Manager · Powered by Orchamind</div>
     <div class="user-select">
-      <button class="user-btn" onclick="goOrchaMind()"><div class="ub-avatar">R</div><div><div class="ub-name">Rudy De Rosas</div><div class="ub-role">Owner / Operator</div></div><span class="ub-arrow">→</span></button>
-      <button class="user-btn" onclick="goOrchaMind()"><div class="ub-avatar">M</div><div><div class="ub-name">Miguel</div><div class="ub-role">Lead Climber</div></div><span class="ub-arrow">→</span></button>
-      <button class="user-btn" onclick="goOrchaMind()"><div class="ub-avatar">J</div><div><div class="ub-name">Jose</div><div class="ub-role">Ground Crew</div></div><span class="ub-arrow">→</span></button>
-      <button class="user-btn" onclick="goOrchaMind()"><div class="ub-avatar">C</div><div><div class="ub-name">Carlos</div><div class="ub-role">Equipment Operator</div></div><span class="ub-arrow">→</span></button>
+      <a href="https://orchamind.com/app" class="user-btn" style="text-decoration:none"><div class="ub-avatar">R</div><div><div class="ub-name">Rudy De Rosas</div><div class="ub-role">Owner / Operator</div></div><span class="ub-arrow">→</span></a>
+      <a href="https://orchamind.com/app" class="user-btn" style="text-decoration:none"><div class="ub-avatar">M</div><div><div class="ub-name">Miguel</div><div class="ub-role">Lead Climber</div></div><span class="ub-arrow">→</span></a>
+      <a href="https://orchamind.com/app" class="user-btn" style="text-decoration:none"><div class="ub-avatar">J</div><div><div class="ub-name">Jose</div><div class="ub-role">Ground Crew</div></div><span class="ub-arrow">→</span></a>
+      <a href="https://orchamind.com/app" class="user-btn" style="text-decoration:none"><div class="ub-avatar">C</div><div><div class="ub-name">Carlos</div><div class="ub-role">Equipment Operator</div></div><span class="ub-arrow">→</span></a>
     </div>
     <div class="login-divider">or</div>
-    <button class="login-orchamind-btn" onclick="goOrchaMind()">Sign In to Orchamind →</button>
+    <a href="https://orchamind.com/app" class="login-orchamind-btn" style="display:block;text-decoration:none">Sign In to Orchamind →</a>
     <div class="login-footer">Powered by <a href="https://orchamind.com">Orchamind</a> · AI Operations for Contractors</div>
   </div>
 </div>
@@ -227,7 +227,7 @@ header{background:rgba(28,58,43,0.95);backdrop-filter:blur(10px);padding:1rem 2r
 document.getElementById('todayDate').textContent = new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
 
 // Login / logout
-function goOrchaMind() { window.open('https://orchamind.com/app','_blank'); }
+function goOrchaMind() { window.location.href = 'https://orchamind.com/app'; }
 function logout() { document.getElementById('login-screen').style.display='flex'; }
 
 // Tabs
